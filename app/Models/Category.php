@@ -14,14 +14,10 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
-    protected $casts = [
-        'view' => 'integer',
-        'image' => 'string', // If you store URLs, ensure it's a string
-    ];
 
     public function movies(): HasMany
     {
-        return $this->hasMany(Movie::class);
+        return $this->hasMany(Movie::class, 'category_id');
     }
 
     public function getMoviesCountAttribute(): int
